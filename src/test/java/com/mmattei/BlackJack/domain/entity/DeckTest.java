@@ -2,13 +2,24 @@ package com.mmattei.BlackJack.domain.entity;
 
 import com.mmattei.BlackJack.domain.exception.NoMoreCardsException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@ExtendWith(MockitoExtension.class)
 class DeckTest {
+
+    @Mock private List<Card> cardsMock;
+    @InjectMocks private Deck sotMockito;
 
     @Test
     public void drawCard() {
@@ -22,12 +33,10 @@ class DeckTest {
     }
 
     @Test
+    // Esse teste exemplifica o uso do mockito.
     public void drawCard_noMoreCards() {
-        var cards = createIncrementalCardList(1);
-        var sot = new Deck(cards);
-
-        assertDoesNotThrow(() -> sot.drawCard());
-        assertThrows(NoMoreCardsException.class, () -> sot.drawCard());
+        Mockito.when(cardsMock.isEmpty()).thenReturn(true);
+        assertThrows(NoMoreCardsException.class, () -> sotMockito.drawCard());
     }
 
     public List<Card> createIncrementalCardList(int cardCount) {
