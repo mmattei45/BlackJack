@@ -1,6 +1,12 @@
 package com.mmattei.BlackJack.domain.entity;
 
+import lombok.Getter;
+
+@Getter
 public class Game {
+
+    private int id;
+    private int playerId;
 
     private boolean tie = false;
     private boolean tableWon = false;
@@ -10,13 +16,17 @@ public class Game {
     private Hand table;
     private Hand player;
 
-    public Game(Deck deck, Hand table, Hand player) {
+    public Game(Deck deck, Hand table, Hand player, int id, int playerId) {
         this.deck = deck;
         this.table = table;
         this.player = player;
+        this.id = id;
+        this.playerId = playerId;
     }
 
     public void nextRound() {
+        if (gameOver()) return;
+
         dealCards();
 
         if (bothWon() || bothLost()) {
@@ -30,18 +40,6 @@ public class Game {
 
     public boolean gameOver() {
         return playerWon || tableWon || tie;
-    }
-
-    public boolean tie() {
-        return tie;
-    }
-
-    public boolean playerWon() {
-        return playerWon;
-    }
-
-    public boolean tableWon() {
-        return tableWon;
     }
 
     private void dealCards() {

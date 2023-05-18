@@ -15,7 +15,7 @@ class GameTest {
         var table = createHand(1);
         var deck = createTwoCardsDeck(3);
 
-        var sot = new Game(deck, table, player);
+        var sot = createGame(deck, table, player);
         sot.nextRound();
 
         assertEquals(5, player.getPoints());
@@ -29,13 +29,13 @@ class GameTest {
         var table = createHand(18);
         var deck = createTwoCardsDeck(3);
 
-        var sot = new Game(deck, table, player);
+        var sot = createGame(deck, table, player);
         sot.nextRound();
 
         assertTrue(sot.gameOver());
-        assertFalse(sot.tie());
-        assertTrue(sot.tableWon());
-        assertFalse(sot.playerWon());
+        assertFalse(sot.isTie());
+        assertTrue(sot.isTableWon());
+        assertFalse(sot.isPlayerWon());
     }
 
     @Test
@@ -44,13 +44,13 @@ class GameTest {
         var table = createHand(19);
         var deck = createTwoCardsDeck(3);
 
-        var sot = new Game(deck, table, player);
+        var sot = createGame(deck, table, player);
         sot.nextRound();
 
         assertTrue(sot.gameOver());
-        assertFalse(sot.tie());
-        assertTrue(sot.playerWon());
-        assertFalse(sot.tableWon());
+        assertFalse(sot.isTie());
+        assertTrue(sot.isPlayerWon());
+        assertFalse(sot.isTableWon());
     }
 
     @Test
@@ -59,13 +59,13 @@ class GameTest {
         var table = createHand(10);
         var deck = createTwoCardsDeck(3);
 
-        var sot = new Game(deck, table, player);
+        var sot = createGame(deck, table, player);
         sot.nextRound();
 
         assertTrue(sot.gameOver());
-        assertFalse(sot.tie());
-        assertTrue(sot.playerWon());
-        assertFalse(sot.tableWon());
+        assertFalse(sot.isTie());
+        assertTrue(sot.isPlayerWon());
+        assertFalse(sot.isTableWon());
     }
 
     @Test
@@ -74,13 +74,13 @@ class GameTest {
         var table = createHand(10);
         var deck = createTwoCardsDeck(3);
 
-        var sot = new Game(deck, table, player);
+        var sot = createGame(deck, table, player);
         sot.nextRound();
 
         assertTrue(sot.gameOver());
-        assertFalse(sot.tie());
-        assertTrue(sot.tableWon());
-        assertFalse(sot.playerWon());
+        assertFalse(sot.isTie());
+        assertTrue(sot.isTableWon());
+        assertFalse(sot.isPlayerWon());
     }
 
     @Test
@@ -89,13 +89,13 @@ class GameTest {
         var table = createHand(18);
         var deck = createTwoCardsDeck(3);
 
-        var sot = new Game(deck, table, player);
+        var sot = createGame(deck, table, player);
         sot.nextRound();
 
         assertTrue(sot.gameOver());
-        assertTrue(sot.tie());
-        assertFalse(sot.tableWon());
-        assertFalse(sot.playerWon());
+        assertTrue(sot.isTie());
+        assertFalse(sot.isTableWon());
+        assertFalse(sot.isPlayerWon());
     }
 
     @Test
@@ -104,18 +104,22 @@ class GameTest {
         var table = createHand(19);
         var deck = createTwoCardsDeck(3);
 
-        var sot = new Game(deck, table, player);
+        var sot = createGame(deck, table, player);
         sot.nextRound();
 
         assertTrue(sot.gameOver());
-        assertTrue(sot.tie());
-        assertFalse(sot.tableWon());
-        assertFalse(sot.playerWon());
+        assertTrue(sot.isTie());
+        assertFalse(sot.isTableWon());
+        assertFalse(sot.isPlayerWon());
     }
 
 
 
-    public Deck createTwoCardsDeck(int cardPoints) {
+    private Game createGame(Deck deck, Hand table, Hand player) {
+        return createGame(deck, table, player);
+    }
+
+    private Deck createTwoCardsDeck(int cardPoints) {
         var card1 = createCard(cardPoints);
         var card2 = createCard(cardPoints);
         var cards = new ArrayList<>(Arrays.asList(card1, card2));
@@ -123,13 +127,13 @@ class GameTest {
         return new Deck(cards);
     }
 
-    public Hand createHand(int points) {
+    private Hand createHand(int points) {
         var hand = new Hand();
         hand.addCard(createCard(points));
         return hand;
     }
 
-    public Card createCard(int points) {
+    private Card createCard(int points) {
         return new Card(points, "X");
     }
 
