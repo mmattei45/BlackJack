@@ -116,7 +116,7 @@ class GameTest {
 
 
     private Game createGame(Deck deck, Hand table, Hand player) {
-        return createGame(deck, table, player);
+        return new Game(deck, table, player, 1, 1);
     }
 
     private Deck createTwoCardsDeck(int cardPoints) {
