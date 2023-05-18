@@ -29,9 +29,9 @@ public class DeckBuilder {
             cards.add(new Card(8, "8"));
             cards.add(new Card(9, "9"));
             cards.add(new Card(10, "10"));
-            cards.add(new Card(10, "J"));
-            cards.add(new Card(10, "Q"));
-            cards.add(new Card(10, "K"));
+            cards.add(new Card(11, "J"));
+            cards.add(new Card(11, "Q"));
+            cards.add(new Card(11, "K"));
         }
 
         return new Deck(cards);
