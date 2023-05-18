@@ -3,6 +3,7 @@ package com.mmattei.BlackJack.application;
 import com.mmattei.BlackJack.domain.entity.DeckBuilder;
 import com.mmattei.BlackJack.domain.entity.Game;
 import com.mmattei.BlackJack.domain.entity.Hand;
+import com.mmattei.BlackJack.domain.exception.NotFoundException;
 import com.mmattei.BlackJack.domain.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,13 +28,19 @@ public class GameService {
     }
 
     public Game nextRound(int gameId, int playerId) {
-        var game = gameRepository.getByGameIdAndPlayerId(gameId, playerId);
+        var game = getGameOrThrow(gameId, playerId);
         game.nextRound();
         return game;
     }
 
     public Game getGame(int gameId, int playerId) {
-        return gameRepository.getByGameIdAndPlayerId(gameId, playerId);
+        return getGameOrThrow(gameId, playerId);
+    }
+
+    private Game getGameOrThrow(int gameId, int playerId) {
+        var game = gameRepository.getByGameIdAndPlayerId(gameId, playerId);
+        if (game == null) throw new NotFoundException();
+        return game;
     }
 
 }

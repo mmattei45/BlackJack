@@ -1,6 +1,7 @@
 package com.mmattei.BlackJack.application;
 
 import com.mmattei.BlackJack.domain.entity.Game;
+import com.mmattei.BlackJack.domain.exception.NotFoundException;
 import com.mmattei.BlackJack.domain.repository.GameRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,14 +53,19 @@ class GameServiceTest {
     }
 
     @Test
+    public void shouldValidatePlayerBeforeNextRound() {
+        var game = gameService.createGame(PLAYER_ID);
+        assertThrows(NotFoundException.class, () -> gameService.nextRound(game.getId(), PLAYER_ID + 1));
+    }
+
+    @Test
     public void shouldOnlyFindPlayersGame() {
         var game = gameService.createGame(PLAYER_ID);
 
-        Game fetchedGame = gameService.getGame(game.getId(), PLAYER_ID + 1);
-        assertNull(fetchedGame);
-
-        fetchedGame = gameService.getGame(game.getId(), PLAYER_ID);
+        Game fetchedGame = gameService.getGame(game.getId(), PLAYER_ID);
         assertNotNull(fetchedGame);
+
+        assertThrows(NotFoundException.class, () -> gameService.getGame(game.getId(), PLAYER_ID + 1));
     }
 
 }

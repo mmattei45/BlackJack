@@ -1,8 +1,12 @@
 package com.mmattei.BlackJack.domain.entity;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Getter
 public class Hand {
 
     private static final int MAX_POINTS = 21;
@@ -15,10 +19,6 @@ public class Hand {
         points += card.getValue();
     }
 
-    public int getPoints() {
-        return points;
-    }
-
     public boolean won() {
         return points == MAX_POINTS;
     }
@@ -27,8 +27,10 @@ public class Hand {
         return points > MAX_POINTS;
     }
 
-    public List<Card> getCards() {
-        return cards;
+    public String getHandString() {
+        return cards.stream()
+                .map(it -> "'" + it.getSymbol() + "'")
+                .collect(Collectors.joining(", "));
     }
 
 }
