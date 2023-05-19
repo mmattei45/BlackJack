@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "809e2ece-d8d6-40fb-ba16-aa1ddb20e410",
+		"_postman_id": "84219b63-5c79-4e96-9844-6b719a184cf3",
 		"name": "BlackJack",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6696099"
@@ -62,7 +62,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/game/0",
+					"raw": "localhost:8080/game/0?userId=1",
 					"host": [
 						"localhost"
 					],
@@ -70,6 +70,12 @@
 					"path": [
 						"game",
 						"0"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
 					]
 				}
 			},
