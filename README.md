@@ -39,6 +39,6 @@ Caso um jogador tente manipular um jogo que não pertence a ele, a api responder
 Informe o id do jogo e o id do usuário, a api responderá o atual estado do jogo.
 
 **3 - Para consultar o estado de um jogo utilize a rota "Game Status":**
-![image](https://github.com/mmattei45/BlackJack/assets/36969485/f34872f8-aa38-484b-8b69-e9c8d7436de4)
+![image](https://github.com/mmattei45/BlackJack/assets/36969485/a42e11e4-7944-4760-a84f-0f52e690d6a9)
 
 Novamente, informe o id do jogo e o id do usuário, a api responderá o atual estado do jogo.
