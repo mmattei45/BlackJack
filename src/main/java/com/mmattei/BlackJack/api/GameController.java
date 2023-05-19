@@ -14,20 +14,20 @@ public class GameController {
     private GameService gameService;
 
     @PostMapping
-    public GameStatusDTO createNewGame() {
-        var game = gameService.createGame(1);
+    public GameStatusDTO createNewGame(@RequestParam Integer userId) {
+        var game = gameService.createGame(userId);
         return mapToDTO(game);
     }
 
     @PostMapping("/{gameId}/nextRound")
-    public GameStatusDTO nextRound(@PathVariable Integer gameId) {
-        var game = gameService.nextRound(gameId, 1);
+    public GameStatusDTO nextRound(@PathVariable Integer gameId, @RequestParam Integer userId) {
+        var game = gameService.nextRound(gameId, userId);
         return mapToDTO(game);
     }
 
     @GetMapping("/{gameId}")
-    public GameStatusDTO getGameStatus(@PathVariable Integer gameId) {
-        var game = gameService.getGame(gameId, 1);
+    public GameStatusDTO getGameStatus(@PathVariable Integer gameId, @RequestParam Integer userId) {
+        var game = gameService.getGame(gameId, userId);
         return mapToDTO(game);
     }
 
