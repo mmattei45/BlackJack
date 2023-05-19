@@ -28,6 +28,8 @@ O parametro "userId" é utilizado para identificar um jogador.
 Cada jogador jogará contra a mesa, e poderá possuir vários jogos simultaneos.
 Um jogador só poderá manipular os seus próprios jogos.
 
+Caso um jogador tente manipular um jogo que não pertence a ele, a api respondera com o status 404 - Not Found.
+
 *Obs: esse mecanismo para identificar um usuário é uma simplificação, em uma aplicação em produção ele deveria ser substituido por um outro mecanismo de autenticação como os tokens por exemplo*
 
 
