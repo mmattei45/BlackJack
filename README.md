@@ -1,8 +1,8 @@
-# BlackJack - Desafio Alt. Bank
+# BlackJack - Desafio Técnico
 ### Descrição:
 O BlackJack é uma implementação simples do jogo de cartas 21, utilizando rest API's.
 
-Esse projeto foi desenvolvido para solucionar o desafio proposto pela equipe técnica do Alt. Bank. 
+Esse projeto foi desenvolvido para solucionar o desafio proposto pela equipe técnica do \*\*\*. 
 
 Ele leva em conta as seguintes regras:
 
